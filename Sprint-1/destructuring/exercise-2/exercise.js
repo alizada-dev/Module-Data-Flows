@@ -70,3 +70,33 @@ let hogwarts = [
     occupation: "Teacher",
   },
 ];
+
+// Task 1
+function hogwartsHouse(characters) {
+  const names = [];
+
+  for (const {firstName, lastName, house} of characters) {
+    if (house === 'Gryffindor') {
+      names.push(`${firstName} ${lastName}`)
+    }
+  }
+  return names;
+}
+
+console.log(hogwartsHouse(hogwarts));
+
+
+// Task 2
+function pets(elements) {
+  const names = [];
+
+  for (const { firstName, lastName, pet, occupation } of elements) {
+    if (pet != null && occupation === 'Teacher') {
+      names.push(`${firstName} ${lastName}`)
+    }
+  }
+
+  return names;
+}
+
+console.log(pets(hogwarts));
