@@ -80,7 +80,7 @@ function hogwartsHouse(characters) {
       names.push(`${firstName} ${lastName}`)
     }
   }
-  return names;
+  return names.join("\n");
 }
 
 console.log(hogwartsHouse(hogwarts));
@@ -96,7 +96,7 @@ function pets(elements) {
     }
   }
 
-  return names;
+  return names.join("\n");
 }
 
 console.log(pets(hogwarts));
