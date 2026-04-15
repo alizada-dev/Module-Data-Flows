@@ -28,10 +28,9 @@ const check = document.getElementById("check");
 //via Book function and start render function
 function submit() {
   if (
-    title.value == null ||
-    author.value == "" ||
-    pages.value == null ||
-    pages.value == ""
+    !title.value.trim() ||
+    !author.value.trim() ||
+    !pages.value.trim()
   ) {
     alert("Please fill all fields!");
     return false;
