@@ -27,16 +27,21 @@ const readCheckbox = document.getElementById("check");
 //check the right input from forms and if its ok -> add the new book (object in array)
 //via Book function and start render function
 function submit() {
+  const trimmedTitle = titleInput.value.trim();
+  const trimmedAuthor = authorInput.value.trim();
+  const trimmedPages = +pagesInput.value.trim();
+
   if (
-    !titleInput.value.trim() ||
-    !authorInput.value.trim() ||
-    !pagesInput.value.trim()
+    !trimmedTitle ||
+    !trimmedAuthor ||
+    !trimmedPages
   ) {
     alert("Please fill all fields!");
     return false;
   } else {
-    let book = new Book(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked);
+    let book = new Book(trimmedTitle, trimmedAuthor, trimmedPages, readCheckbox.checked);
     myLibrary.push(book);
+
     titleInput.value = "";
     authorInput.value = "";
     pagesInput.value = "";
@@ -46,10 +51,10 @@ function submit() {
 }
 
 function Book(title, author, pages, check) {
-  this.titleInput = title;
-  this.authorInput = author;
-  this.pagesInput = pages;
-  this.readCheckbox = check;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.check = check;
 }
 
 function render() {
@@ -68,9 +73,9 @@ function render() {
     const pagesCell = row.insertCell(2);
     const wasReadCell = row.insertCell(3);
     const deleteCell = row.insertCell(4);
-    titleCell.textContent = myLibrary[i].titleInput;
-    authorCell.textContent = myLibrary[i].authorInput;
-    pagesCell.textContent = myLibrary[i].pagesInput;
+    titleCell.textContent = myLibrary[i].title;
+    authorCell.textContent = myLibrary[i].author;
+    pagesCell.textContent = myLibrary[i].pages;
 
     //add and wait for action for read/unread button
     const changeBut = document.createElement("button");
