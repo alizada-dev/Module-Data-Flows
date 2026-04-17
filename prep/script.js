@@ -1,42 +1,6 @@
 
 const state = {
-    films: [
-        {
-            title: "Intersteller",
-            director: "Christopher Nolan",
-            times: ["15:35"],
-            certificate: "15",
-            duration: 190
-        },
-        {
-            title: "ZNMD",
-            director: "Zoya Akhtar",
-            times: ["15:00", "20:00"],
-            certificate: "12A",
-            duration: 153
-        },
-        {
-            title: "PK",
-            director: "Rajkumar",
-            times: ["13:15", "15:15", "17:15"],
-            certificate: "8B",
-            duration: 165
-        },
-        {
-            title: "3 Idiots",
-            director: "Rajkumar Hirani",
-            times: ["13:15", "15:15", "17:15"],
-            certificate: "98C",
-            duration: 198
-        },
-        {
-            title: "Inception",
-            director: "Christopher Nolan",
-            times: ["13:00", "15:00"],
-            certificate: "7C",
-            duration: 128
-        }
-    ],
+    films: [],
 
     searchTerm: "",
 }
@@ -60,6 +24,7 @@ const createFilmCard = (film) => {
 }
 
 const container = document.getElementById("container");
+const endpoint = "https://curriculum.codeyourfuture.io/itp/dummy-apis/films.json";
 
 function render() {
     container.textContent = "";
@@ -87,5 +52,15 @@ function handleInput(event) {
     state.searchTerm = event.target.value;
     render();
 }
+
+const fetchFilms = async () => {
+    const response = await fetch(endpoint);
+    return await response.json();
+};
+
+fetchFilms().then((films) => {
+    state.films = films;
+    render();
+})
 
 render();
